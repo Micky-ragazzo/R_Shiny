@@ -121,3 +121,4 @@ shinyApp(ui = ui, server = server)
 
 #https://www.kaggle.com/nursah/data-visualization
 #https://campus.datacamp.com/courses/building-web-applications-in-r-with-shiny/inputs-outputs-and-rendering-functions?ex=8
+#https://www.academia.edu/38348726/RNotesForProfessionals.pdf
