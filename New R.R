@@ -7,6 +7,9 @@ library(dplyr)
 #n_total <- nrow(df)
 all_genres <- sort(unique(df$Genres))
 
+#setting criteria date 
+min_date <- min(df$Last.Updated)
+max_date <- max(df$Last.Updated)
 # Define UI for application that plots features of movies 
 ui <- fluidPage(
   
@@ -40,7 +43,21 @@ ui <- fluidPage(
                   label = "Select genres:",
                   choices = all_genres,
                   selected = "Social",
-                  multiple = TRUE)
+                  multiple = TRUE),
+      HTML(paste0("Last updated. Pick dates between ", 
+                  min_date, " and ", max_date, ".")),
+      
+      # Break for visual separation
+      br(), br(),
+      
+      # Date input
+      dateRangeInput(inputId = "date",
+                     label = "Select dates:",
+                     start = "2013-01-01", end = "2014-01-01",
+                     min = min_date, max = max_date,
+                     startview = "year")
+    )
+    
       
  #     HTML(paste("Enter a value between 1 and", n_total)),
 #      selectInput(inputId = "n",
