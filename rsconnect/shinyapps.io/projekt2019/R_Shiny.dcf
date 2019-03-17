@@ -1,0 +1,12 @@
+name: R_Shiny
+title: R_Shiny
+username:
+account: projekt2019
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 793321
+bundleId: 1943276
+url: https://projekt2019.shinyapps.io/R_Shiny/
+when: 1552679696.96846
+asMultiple: FALSE
+asStatic: FALSE
