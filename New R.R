@@ -8,8 +8,9 @@ library(dplyr)
 all_genres <- sort(unique(df$Genres))
 
 #setting criteria date 
-min_date <- min(df$Last.Updated)
-max_date <- max(df$Last.Updated)
+min_date <- min(as.numeric(df$Last.Updated))
+max_date <- max(as.numeric(df$Last.Updated))
+
 # Define UI for application that plots features of movies 
 ui <- fluidPage(
   
@@ -43,20 +44,20 @@ ui <- fluidPage(
                   label = "Select genres:",
                   choices = all_genres,
                   selected = "Social",
-                  multiple = TRUE),
-      HTML(paste0("Last updated. Pick dates between ", 
-                  min_date, " and ", max_date, ".")),
+                  multiple = TRUE)
+      # ,HTML(paste0("Last updated. Pick dates between ",
+      #             min_date, " and ", max_date, ".")),
       
       # Break for visual separation
-      br(), br(),
+      # br(), br(),
       
       # Date input
-      dateRangeInput(inputId = "date",
-                     label = "Select dates:",
-                     start = "2013-01-01", end = "2014-01-01",
-                     min = min_date, max = max_date,
-                     startview = "year")
-    )
+      # dateRangeInput(inputId = "date",
+      #                label = "Select dates:",
+      #                start = "2015-01-01", end = "2019-01-01",
+      #                min = min_date, max = max_date,
+      #                startview = "year")
+      # 
     
       
  #     HTML(paste("Enter a value between 1 and", n_total)),
@@ -72,6 +73,9 @@ ui <- fluidPage(
       plotOutput(outputId = "scatterplot"),
       plotOutput(outputId = "densityplot", height = 200),
       DT::dataTableOutput(outputId = "df_table")
+      
+      # ,plotOutput(outputId = "scatterplot")
+      
     )
   )
 )
@@ -100,9 +104,20 @@ server <- function(input, output) {
       DT::datatable(data = df_sample, 
                   options = list(pageLength = 10), 
                   rownames = FALSE)
-    
-  })
+    }) 
+  #   output$scatterplot <- renderPlot({
+  #       req(input$date)
+  #       df_selected_date <- df %>%
+  #        # mutate(as.numeric(Last.Updated) = as.Date(as.numeric(Last.Updated))) %>% # convert thtr_rel_date to Date format
+  #         filter(as.numeric(Last.Updated) >= input$date[1] & as.numeric(Last.Updated) <= input$date[2])
+  #       ggplot(data = df_selected_date, aes(x = Genres, y = Rating, color = Type)) +
+  #         geom_point()
+  #     
+  # })
 }
 
 # Create a Shiny app object
 shinyApp(ui = ui, server = server)
+
+#https://www.kaggle.com/nursah/data-visualization
+#https://campus.datacamp.com/courses/building-web-applications-in-r-with-shiny/inputs-outputs-and-rendering-functions?ex=8
