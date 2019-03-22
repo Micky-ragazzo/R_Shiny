@@ -1,0 +1,12 @@
+name: wsdf
+title: wsdf
+username:
+account: projekt2019
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 808137
+bundleId: 1959016
+url: https://projekt2019.shinyapps.io/wsdf/
+when: 1553286282.26846
+asMultiple: FALSE
+asStatic: FALSE
