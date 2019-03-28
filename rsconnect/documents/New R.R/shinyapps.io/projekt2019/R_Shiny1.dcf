@@ -5,9 +5,9 @@ account: projekt2019
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 822114
-bundleId: 1971680
+bundleId: 1971734
 url: https://projekt2019.shinyapps.io/R_Shiny1/
-when: 1553802851.02915
+when: 1553804125.96111
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: .RData|app.R|w
+ignoredFiles: app.R

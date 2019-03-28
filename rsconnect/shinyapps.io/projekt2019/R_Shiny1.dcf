@@ -5,8 +5,8 @@ account: projekt2019
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 822114
-bundleId: 1971707
+bundleId: 1971726
 url: https://projekt2019.shinyapps.io/R_Shiny1/
-when: 1553803385.54582
+when: 1553803918.46054
 asMultiple: FALSE
 asStatic: FALSE
