@@ -1,0 +1,12 @@
+name: wsrwr
+title: wsrwr
+username:
+account: projekt2019
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 808148
+bundleId: 1959033
+url: https://projekt2019.shinyapps.io/wsrwr/
+when: 1553286728.92141
+asMultiple: FALSE
+asStatic: FALSE
