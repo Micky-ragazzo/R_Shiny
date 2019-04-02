@@ -3,8 +3,24 @@ library(shiny)
 library(ggplot2)
 library(DT)
 library(dplyr)
-
+#gg <- crosstab(df, row.vars = "Category", col.vars = "Type", type = "f")
 #n_total <- nrow(df)
+# > output <- read.table("~/GitHub/R_Shiny1/output.txt", quote="\"", comment.char="")
+# 
+#               > output <- read_table("output.txt", na = "empty")
+#               Parsed with column specification:
+#                 cols(
+#                   X1 = col_character(),
+#                   Type = col_logical(),
+#                   `0` = col_double(),
+#                   Free = col_double(),
+#                   `NaN` = col_double(),
+#                   Paid = col_double(),
+#                   Sum = col_double()
+#                 )
+#               Warning message:
+#                 Missing column names filled in: 'X1' [1] 
+#               > View(output)
 all_genres <- sort(unique(df$Genres))
 
 #setting criteria date 
@@ -25,17 +41,17 @@ ui <- fluidPage(
       # Select variable for y-axis
       selectInput(inputId = "y", 
                   label = "Y-axis:",
-                  choices = c("Rating", "Size" , "Category", "Installs", "Type", "Price", "Content.Rating", "Genres", "Last.Updated", "Current.Ver", "Current.Ver", "Android.Ver"), 
-                  selected = "Category"),
+                  choices = c("Type", "Free", "Paid" , "Sum"), #, "Installs", "Type", "Price", "Content.Rating", "Genres", "Last.Updated", "Current.Ver", "Current.Ver", "Android.Ver"), 
+                  selected = "FREE"),
       # Select variable for x-axis
       selectInput(inputId = "x", 
                   label = "X-axis:",
-                  choices = c("Rating", "Size" , "Category", "Installs", "Type", "Price", "Content.Rating", "Genres", "Last.Updated", "Current.Ver", "Current.Ver", "Android.Ver"), 
+                  choices = c("Type", "Free", "Paid" , "Sum"), #, "Installs", "Type", "Price", "Content.Rating", "Genres", "Last.Updated", "Current.Ver", "Current.Ver", "Android.Ver"), 
                   selected = "Installs"),
       selectInput(inputId = "z", 
                   label = "Color: by",
-                  choices = c("Rating", "Size" , "Category", "Installs", "Type", "Price", "Content.Rating", "Genres", "Last.Updated", "Current.Ver", "Current.Ver", "Android.Ver"),
-                  selected = "Type"),
+                  choices = c("Type", "Free", "Paid", "Sum"), #, "Category", "Installs", "Type", "Price", "Content.Rating", "Genres", "Last.Updated", "Current.Ver", "Current.Ver", "Android.Ver"),
+                  selected = "Paid"),
       sliderInput(inputId = "alpha",
                   label = "View Scale:",
                   min = 0, max = 1,
@@ -80,19 +96,17 @@ ui <- fluidPage(
   )
 )
 
-
-
 # Define server function required to create the scatterplot
 server <- function(input, output) {
   
   # Create scatterplot object the plotOutput function is expecting
   output$scatterplot <- renderPlot({
-    ggplot(data = df, aes_string(x = input$x, y = input$y, 
+    ggplot(data = CT, aes_string(x = input$x, y = input$y, 
                                  color = input$z)) +
       geom_point(alpha = input$alpha)
   })
   output$densityplot <- renderPlot({
-    ggplot(data = df, aes_string(x = input$x)) +
+    ggplot(data = CT, aes_string(x = input$x)) +
       geom_density()
   })
   output$df_table <- DT::renderDataTable({
