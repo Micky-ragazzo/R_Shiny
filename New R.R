@@ -18,9 +18,7 @@ library(dplyr)
 #                   Paid = col_double(),
 #                   Sum = col_double()
 #                 )
-#               Warning message:
-#                 Missing column names filled in: 'X1' [1] 
-#               > View(output)
+
 all_genres <- sort(unique(df$Genres))
 
 #setting criteria date 
@@ -42,12 +40,12 @@ ui <- fluidPage(
       selectInput(inputId = "y", 
                   label = "Y-axis:",
                   choices = c("Type", "Free", "Paid" , "Sum"), #, "Installs", "Type", "Price", "Content.Rating", "Genres", "Last.Updated", "Current.Ver", "Current.Ver", "Android.Ver"), 
-                  selected = "FREE"),
+                  selected = "Type"),
       # Select variable for x-axis
       selectInput(inputId = "x", 
                   label = "X-axis:",
-                  choices = c("Type", "Free", "Paid" , "Sum"), #, "Installs", "Type", "Price", "Content.Rating", "Genres", "Last.Updated", "Current.Ver", "Current.Ver", "Android.Ver"), 
-                  selected = "Installs"),
+                  choices = c("Free", "Paid" , "Sum"), #, "Installs", "Type", "Price", "Content.Rating", "Genres", "Last.Updated", "Current.Ver", "Current.Ver", "Android.Ver"), 
+                  selected = "Free"),
       selectInput(inputId = "z", 
                   label = "Color: by",
                   choices = c("Type", "Free", "Paid", "Sum"), #, "Category", "Installs", "Type", "Price", "Content.Rating", "Genres", "Last.Updated", "Current.Ver", "Current.Ver", "Android.Ver"),
@@ -55,7 +53,7 @@ ui <- fluidPage(
       sliderInput(inputId = "alpha",
                   label = "View Scale:",
                   min = 0, max = 1,
-                  value = 0.1),
+                  value = 0.99),
       selectInput(inputId = "Genres",
                   label = "Select genres:",
                   choices = all_genres,
